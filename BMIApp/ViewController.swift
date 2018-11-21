@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         self.view.addSubview(titleLabel)
         
         
-        button.addTarget(self, action: #selector(basicButtonClicked(sender:)), for:.touchDragExit)
+        button.addTarget(self, action: #selector(basicButtonClicked(sender:)), for:.touchUpInside)
         // 1：何処の？（ViewController）　２：実行する関数　３：実行タイミング（ボタンを離した時に実行）
         // #selectorは決まった文で必ず必要
         
