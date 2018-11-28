@@ -10,6 +10,8 @@ import UIKit
 
 class InputViewController: UIViewController, UITextFieldDelegate {
 
+    let weightInputField = UITextField()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,14 +29,26 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         weightLabel.text = "体重を入力" // タイトルを設定
         self.view.addSubview(weightLabel)
         
-        let weightInputField = UITextField()
-        weightInputField.keyboardType = UIKeyboardType.decimalPad
+//        let weightInputField = UITextField()
+        weightInputField.keyboardType = UIKeyboardType.default
+//        weightInputField.keyboardType = UIKeyboardType.decimalPad
 //        weightInputField.returnKeyType = UIReturnKeyType.default
         weightInputField.frame = CGRect(x: view.frame.width * 0.1, y: view.frame.height * 0.5,
                                         width: view.frame.width * 0.8, height: view.frame.height * 0.1) // 表示位置を設定
         weightInputField.textAlignment = NSTextAlignment.left // 左寄せ
         self.view.addSubview(weightInputField)
+        
+        weightInputField.placeholder = "体重を入力" // 未入力の場合に文字を表示
+        
+        // returnkeyが押された後の処理が必要。
+        // 入力した結果はvalueに格納される。
        
+        let underLine =  UIView()
+        underLine.backgroundColor = UIColor.black
+        underLine.frame = CGRect(x: view.frame.width * 0.1, y: view.frame.height * 0.6,
+                                 width: view.frame.width * 0.8, height: 1.0) // 表示位置を設定
+        self.view.addSubview(underLine)
+        
         /*
         let border = CALayer()
         var color = UIColor()
@@ -73,7 +87,9 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     @objc func bmiCalcButtonClicked(sender: UIButton){
         print("bmiCalcButtonClicked")
         let resultVC:ResultViewController = ResultViewController()
-        self.navigationController?.pushViewController(resultVC, animated: true)
+//        self.navigationController?.pushViewController(resultVC, animated: true)
+        resultVC.str = weightInputField.text!
+        self.present(resultVC, animated: true) // 下からニュッと出る。モーダル遷移。
     }
     
     /*
