@@ -9,9 +9,13 @@
 import UIKit
 
 class ResultViewController: UIViewController {
+    
+    var str: String = "あああ"
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(str)
         
         // 背景色を変更（白）
         self.view.backgroundColor = UIColor.white
@@ -46,6 +50,7 @@ class ResultViewController: UIViewController {
     // BMI計算ボタンを押された時の処理
     @objc func closeButtonClicked(sender: UIButton){
         print("closeButtonClicked")
+        self.dismiss(animated: true, completion: nil) // dismiss は自分自身を消す。結果として裏のレイアウトU（前の画面）が表示される。
     }
 
     /*
