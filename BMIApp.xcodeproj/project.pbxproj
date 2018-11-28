@@ -13,6 +13,7 @@
 		2B17C80E219C6006002F8F2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B17C80D219C6006002F8F2F /* Assets.xcassets */; };
 		2B17C811219C6006002F8F2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B17C80F219C6006002F8F2F /* LaunchScreen.storyboard */; };
 		2B49273721A59C2D0057FA27 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B49273621A59C2D0057FA27 /* InputViewController.swift */; };
+		2BB6C3F521AAF64600019EE6 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6C3F421AAF64600019EE6 /* ResultViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		2B17C810219C6006002F8F2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B17C812219C6006002F8F2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B49273621A59C2D0057FA27 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
+		2BB6C3F421AAF64600019EE6 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				2B17C806219C6005002F8F2F /* AppDelegate.swift */,
 				2B17C808219C6005002F8F2F /* ViewController.swift */,
 				2B49273621A59C2D0057FA27 /* InputViewController.swift */,
+				2BB6C3F421AAF64600019EE6 /* ResultViewController.swift */,
 				2B17C80A219C6005002F8F2F /* Main.storyboard */,
 				2B17C80D219C6006002F8F2F /* Assets.xcassets */,
 				2B17C80F219C6006002F8F2F /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				2B49273721A59C2D0057FA27 /* InputViewController.swift in Sources */,
 				2B17C809219C6005002F8F2F /* ViewController.swift in Sources */,
 				2B17C807219C6005002F8F2F /* AppDelegate.swift in Sources */,
+				2BB6C3F521AAF64600019EE6 /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

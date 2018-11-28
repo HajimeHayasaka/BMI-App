@@ -8,11 +8,12 @@
 
 import UIKit
 
-class InputViewController: UIViewController {
+class InputViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 背景色を変更（白）
         self.view.backgroundColor = UIColor.white
         
         
@@ -25,6 +26,21 @@ class InputViewController: UIViewController {
         weightLabel.textAlignment = NSTextAlignment.left // 左寄せ
         weightLabel.text = "体重を入力" // タイトルを設定
         self.view.addSubview(weightLabel)
+        
+        let weightInputField = UITextField()
+        weightInputField.keyboardType = UIKeyboardType.decimalPad
+//        weightInputField.returnKeyType = UIReturnKeyType.default
+        weightInputField.frame = CGRect(x: view.frame.width * 0.1, y: view.frame.height * 0.5,
+                                        width: view.frame.width * 0.8, height: view.frame.height * 0.1) // 表示位置を設定
+        weightInputField.textAlignment = NSTextAlignment.left // 左寄せ
+        self.view.addSubview(weightInputField)
+       
+        /*
+        let border = CALayer()
+        var color = UIColor()
+        border.backgroundColor = color.cgColor
+        weightInputField.layer.addSublayer(border)
+        */
 
         // 身長入力欄の作成
         let heightLabel = UILabel()
@@ -56,8 +72,8 @@ class InputViewController: UIViewController {
     // BMI計算ボタンを押された時の処理
     @objc func bmiCalcButtonClicked(sender: UIButton){
         print("bmiCalcButtonClicked")
-        let secondVC:InputViewController = InputViewController()
-        self.navigationController?.pushViewController(secondVC, animated: true)
+        let resultVC:ResultViewController = ResultViewController()
+        self.navigationController?.pushViewController(resultVC, animated: true)
     }
     
     /*
