@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         // タイトルの生成
         let titleLabel = UILabel()
         titleLabel.textColor = UIColor(named: "textGray") // ボタンの色をグレー色（textGray）に設定
-        titleLabel.font = UIFont.systemFont(ofSize: 10) // フォントサイズを変更
+        titleLabel.font = UIFont.systemFont(ofSize: 60) // フォントサイズを変更
         titleLabel.frame = CGRect(x: view.frame.width * 0.1, y: view.frame.height * 0.4,
                                   width: view.frame.width * 0.8, height: view.frame.height * 0.1) // 表示位置を設定
         titleLabel.textAlignment = NSTextAlignment.center // センター揃え
