@@ -108,8 +108,6 @@ class InputViewController: UIViewController, UITextFieldDelegate {
 
         
         
-        
-        
         // BMI計算ボタンの生成 ---------------------------------------------------------------
         
         let bmiCalcButton = UIButton()
@@ -132,7 +130,9 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     @objc func bmiCalcButtonClicked(sender: UIButton){
         print("bmiCalcButtonClicked")
         let resultVC: ResultViewController = ResultViewController()
-        resultVC.calcBMIResultValue = Double(weightInputField.text!)! + Double(heightInputField.text!)! //テスト
+        if weightInputField.text != "" && heightInputField.text != "" {
+            resultVC.calcBMIResultValue = calcBMI(weight: Double(weightInputField.text!)!, height: Double(heightInputField.text!)!)
+        }
         self.present(resultVC, animated: true) // 下からニュッと出る。モーダル遷移。
     }
     
@@ -156,6 +156,11 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         }
         textField.resignFirstResponder()
         return true
+    }
+    
+    // BMI計算処理
+    func calcBMI(weight: Double, height: Double) -> Double {
+        return round((weight / ((height / 100.0) * (height / 100.0))) * 10) / 10 // 小数点1位以下四捨五入
     }
 
 }
