@@ -10,17 +10,18 @@ import UIKit
 
 class ResultViewController: UIViewController {
     
-    var str: String = "あああ"
+    var calcBMIResultValue: Double = 0.0 // BMIの計算結果格納用
+    var calcBMIResultFlag: Bool = false // 計算結果判定フラグ
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(str)
         
         // 背景色を変更（白）
         self.view.backgroundColor = UIColor.white
 
         // 結果の表示
+        
+        // タイトル表示
         let bmiLabel = UILabel()
         bmiLabel.textColor = UIColor(named: "textGray") // ボタンの色をグレー色（textGray）に設定
         bmiLabel.font = UIFont.systemFont(ofSize: 30) // フォントサイズを変更
@@ -29,6 +30,16 @@ class ResultViewController: UIViewController {
         bmiLabel.textAlignment = NSTextAlignment.center // 中央揃え
         bmiLabel.text = "BMI" // タイトルを設定
         self.view.addSubview(bmiLabel)
+        
+        // 結果表示
+        let bmiResultLabel = UILabel()
+        bmiResultLabel.textColor = UIColor(named: "textGray") // ボタンの色をグレー色（textGray）に設定
+        bmiResultLabel.font = UIFont.systemFont(ofSize: 30) // フォントサイズを変更
+        bmiResultLabel.frame = CGRect(x: view.frame.width * 0.1, y: view.frame.height * 0.3,
+                                width: view.frame.width * 0.8, height: view.frame.height * 0.1) // 表示位置を設定
+        bmiResultLabel.textAlignment = NSTextAlignment.center // 中央揃え
+        bmiResultLabel.text = String(calcBMIResultValue) // タイトルを設定
+        self.view.addSubview(bmiResultLabel)
         
         // 閉じるボタンの生成
         let closeButton = UIButton()

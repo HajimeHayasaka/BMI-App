@@ -132,7 +132,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     @objc func bmiCalcButtonClicked(sender: UIButton){
         print("bmiCalcButtonClicked")
         let resultVC: ResultViewController = ResultViewController()
-        resultVC.str = weightInputField.text!
+        resultVC.calcBMIResultValue = Double(weightInputField.text!)! + Double(heightInputField.text!)! //テスト
         self.present(resultVC, animated: true) // 下からニュッと出る。モーダル遷移。
     }
     
@@ -148,8 +148,12 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     
     // 改行ボタンを押された場合の処理
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("wValue:\(Int(weightInputField.text!)!)")
-        print("hValue:\(Int(heightInputField.text!)!)")
+        if weightInputField.text != "" {
+            print("wValue:\(Double(weightInputField.text!)!)")
+        }
+        if heightInputField.text != "" {
+            print("hValue:\(Double(heightInputField.text!)!)")
+        }
         textField.resignFirstResponder()
         return true
     }
