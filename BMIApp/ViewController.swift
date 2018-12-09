@@ -16,6 +16,9 @@ class ViewController: UIViewController {
         // 背景色を変更（白）
         self.view.backgroundColor = UIColor.white
         
+        // ナビゲーションバーを非表示に設定
+        self.navigationController!.setNavigationBarHidden(true, animated: false)
+        
         // タイトルの生成
         let titleLabel = UILabel()
         titleLabel.textColor = UIColor(named: "textGray") // ボタンの色をグレー色（textGray）に設定
