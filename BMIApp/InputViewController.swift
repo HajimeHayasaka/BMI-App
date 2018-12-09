@@ -27,6 +27,15 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         weightInputField.clearButtonMode = .whileEditing
         heightInputField.clearButtonMode = .whileEditing
         
+        // 完了ボタンの作成
+        let kbToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
+        kbToolBar.barStyle = UIBarStyle.default  // スタイルを設定
+        kbToolBar.sizeToFit()  // 画面幅に合わせてサイズを変更
+        let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
+        let commitButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(commitButtonTapped(sender:)))
+        kbToolBar.items = [spacer, commitButton]
+
+        
         // 体重入力欄の作成 ---------------------------------------------------------------
         
         // 体重入力タイトル表示
@@ -50,23 +59,21 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(weightUnitLabel)
         
         // 体重入力欄の作成
-        weightInputField.keyboardType = UIKeyboardType.default // キーボードのタイプを設定　※デフォルト
+        weightInputField.keyboardType = UIKeyboardType.decimalPad // キーボードのタイプを設定　※数字と小数点のみ「decimalPad」
         weightInputField.frame = CGRect(x: view.frame.width * 0.1, y: view.frame.height * 0.25,
                                         width: view.frame.width * 0.7, height: view.frame.height * 0.1) // 表示位置を設定
         weightInputField.textAlignment = NSTextAlignment.left // 左寄せ
         weightInputField.placeholder = "体重を入力" // 未入力の場合の表示文字を設定
+        weightInputField.inputAccessoryView = kbToolBar // 完了ボタンをセット
         self.view.addSubview(weightInputField)
-
+        
+        
         // 下線を表示（体重入力欄）
         let underLineOfweight =  UIView()
         underLineOfweight.backgroundColor = UIColor(named: "textGray") // ボタンの色をグレー色（textGray）に設定
         underLineOfweight.frame = CGRect(x: view.frame.width * 0.1, y: view.frame.height * 0.32,
                                  width: view.frame.width * 0.8, height: 1.0) // 表示位置を設定
         self.view.addSubview(underLineOfweight)
-
-        
-        // returnkeyが押された後の処理が必要。
-        // 入力した結果はvalueに格納される。
 
         
         // 身長入力欄の作成 ---------------------------------------------------------------
@@ -92,11 +99,13 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(heightUnitLabel)
         
         // 身長入力欄の作成
-        heightInputField.keyboardType = UIKeyboardType.default // キーボードのタイプを設定　※デフォルト
+        heightInputField.keyboardType = UIKeyboardType.decimalPad // キーボードのタイプを設定　※数字と小数点のみ「decimalPad」
+        heightInputField.returnKeyType = .done
         heightInputField.frame = CGRect(x: view.frame.width * 0.1, y: view.frame.height * 0.4,
                                         width: view.frame.width * 0.7, height: view.frame.height * 0.1) // 表示位置を設定
         heightInputField.textAlignment = NSTextAlignment.left // 左寄せ
         heightInputField.placeholder = "身長を入力" // 未入力の場合の表示文字を設定
+        heightInputField.inputAccessoryView = kbToolBar // 完了ボタンをセット
         self.view.addSubview(heightInputField)
         
         // 下線を表示（身長入力欄）
@@ -106,7 +115,6 @@ class InputViewController: UIViewController, UITextFieldDelegate {
                                          width: view.frame.width * 0.8, height: 1.0) // 表示位置を設定
         self.view.addSubview(underLineOfheight)
 
-        
         
         // BMI計算ボタンの生成 ---------------------------------------------------------------
         
@@ -161,6 +169,16 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     // BMI計算処理
     func calcBMI(weight: Double, height: Double) -> Double {
         return round((weight / ((height / 100.0) * (height / 100.0))) * 10) / 10 // 小数点1位以下四捨五入
+    }
+    
+    // 完了ボタンをタッチした場合にキーボードを閉じる
+    @objc func commitButtonTapped(sender: UIButton) {
+        self.view.endEditing(true)
+    }
+    
+    // キーボード外をタッチした場合にキーボードを閉じる
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 
 }
