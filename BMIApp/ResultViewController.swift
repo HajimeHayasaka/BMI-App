@@ -11,13 +11,19 @@ import UIKit
 class ResultViewController: UIViewController {
     
     // BMIの判定結果
-    enum BMIResultState {
-        case Slender    // 痩せている
-        case Normal     // 正常
-        case Obesity    // 太っている
+    enum BMIResultState: String {
+        case Obesity = "太りすぎです！"   // 太っている
+        case Normal = "健康です！"       // 正常
+        case Slender = "もっと食べて！"   // 痩せている
     }
     
-    var calcBMIResultValue: Double = 0.0 // BMIの計算結果格納用
+    // BMIの計算結果格納用
+    var calcBMIResultValue: Double = 0.0
+    
+    // BMI結果の画像格納用
+    let obesityImage = UIImage(named: "obesityImage")   // 太りすぎな場合の画像
+    let normalImage = UIImage(named: "normalImage")     // 正常な場合の画像
+    let slenderImage = UIImage(named: "slenderImage")   // 痩せている場合の画像
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +31,6 @@ class ResultViewController: UIViewController {
         // 背景色を変更（白）
         self.view.backgroundColor = UIColor.white
 
-        // 結果の表示 
-        
         // タイトル表示 ---------------------------------------------------------------
         let bmiTitleLabel = UILabel()
         bmiTitleLabel.textColor = UIColor(named: "textGray") // ボタンの色をグレー色（textGray）に設定
@@ -47,26 +51,16 @@ class ResultViewController: UIViewController {
         bmiResultLabel.text = String(calcBMIResultValue) // タイトルを設定
         self.view.addSubview(bmiResultLabel)
         
-        // 結果の表示 ---------------------------------------------------------------
-        // テスト実装
-        // 画像表示
-        let normalImage = UIImage(named: "Image")
-        let normalImageView = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: 250.0, height: 250.0))
-        normalImageView.image = normalImage
-        normalImageView.center = view.center
-        self.view.addSubview(normalImageView)
-
-        // 結果のコメント表示
-        let bmiCommentsLabel = UILabel()
-        bmiCommentsLabel.textColor = UIColor(named: "textGray") // ボタンの色をグレー色（textGray）に設定
-        bmiCommentsLabel.font = UIFont.systemFont(ofSize: 25) // フォントサイズを変更
-        bmiCommentsLabel.frame = CGRect(x: view.frame.width * 0.25, y: view.frame.height * 0.7,
-                                      width: view.frame.width * 0.5, height: view.frame.height * 0.1) // 横の位置を中央に設定
-        bmiCommentsLabel.textAlignment = NSTextAlignment.center // 中央揃え
-        bmiCommentsLabel.text = String("コメント") // タイトルを設定
-        self.view.addSubview(bmiCommentsLabel)
+        // 結果の表示処理 ---------------------------------------------------------------
+        switch judgmentResultOfBMI(value: calcBMIResultValue) {
+        case BMIResultState.Obesity:
+            dispResult(image: obesityImage, comment: BMIResultState.Obesity.rawValue)
+        case BMIResultState.Normal:
+            dispResult(image: normalImage, comment: BMIResultState.Normal.rawValue)
+        case BMIResultState.Slender:
+            dispResult(image: slenderImage, comment: BMIResultState.Slender.rawValue)
+        }
         
-
         // 閉じるボタンの生成 ---------------------------------------------------------------
         let closeButton = UIButton()
         closeButton.backgroundColor = UIColor(named: "buttonPink")   // ボタンの色をピンク色（buttonPink）に設定
@@ -90,6 +84,35 @@ class ResultViewController: UIViewController {
         self.dismiss(animated: true, completion: nil) // dismiss は自分自身を消す。結果として裏のレイアウトU（前の画面）が表示される。
     }
 
+    func dispResult(image: UIImage!, comment: String) {
+        // 画像表示
+        let dispImage = image
+        let dispImageView = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: 250.0, height: 250.0))
+        dispImageView.image = dispImage
+        dispImageView.center = view.center
+        self.view.addSubview(dispImageView)
+        
+        // 結果のコメント表示
+        let bmiCommentsLabel = UILabel()
+        bmiCommentsLabel.textColor = UIColor(named: "textGray") // ボタンの色をグレー色（textGray）に設定
+        bmiCommentsLabel.font = UIFont.systemFont(ofSize: 25) // フォントサイズを変更
+        bmiCommentsLabel.frame = CGRect(x: view.frame.width * 0.25, y: view.frame.height * 0.7,
+                                        width: view.frame.width * 0.5, height: view.frame.height * 0.1) // 横の位置を中央に設定
+        bmiCommentsLabel.textAlignment = NSTextAlignment.center // 中央揃え
+        bmiCommentsLabel.text = String(comment) // タイトルを設定
+        self.view.addSubview(bmiCommentsLabel)
+    }
+    
+    func judgmentResultOfBMI(value: Double) -> BMIResultState {
+        if value >= 25.0 {
+            return BMIResultState.Obesity
+        } else if value >= 18.5 {
+            return BMIResultState.Normal
+        } else {
+            return BMIResultState.Slender
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
