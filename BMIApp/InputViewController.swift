@@ -26,17 +26,25 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         // クリアボタンの設定
         weightInputField.clearButtonMode = .whileEditing
         heightInputField.clearButtonMode = .whileEditing
-        
+        // onojun: 上野も下の省略形ですね！
+        // weightInputField.clearButtonMode = UITextField.ViewMode.whileEditing
+        // heightInputField.clearButtonMode = UITextField.ViewMode.whileEditing
+
         // 完了ボタンの作成
         let kbToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
         kbToolBar.barStyle = UIBarStyle.default  // スタイルを設定
         kbToolBar.sizeToFit()  // 画面幅に合わせてサイズを変更
+        // onojun: UIToolbarはあまり使った事ないんですが、画面幅に合わせるならこんなのでも良いかもです。
+        // let kbToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40))
+
         let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
         let commitButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(commitButtonTapped(sender:)))
         kbToolBar.items = [spacer, commitButton]
 
         
         // 体重入力欄の作成 ---------------------------------------------------------------
+        // こんな感じでコメントも書けますよ
+        // MARK: 体重入力欄の作成
         
         // 体重入力タイトル表示
         let weightLabel = UILabel()
@@ -77,6 +85,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
 
         
         // 身長入力欄の作成 ---------------------------------------------------------------
+        // MARK: 身長入力欄の作成
 
         // 身長入力タイトル表示
         let heightLabel = UILabel()
@@ -131,6 +140,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         // BMI計算ボタンが押された時の処理を実行
         bmiCalcButton.addTarget(self, action: #selector(bmiCalcButtonClicked(sender:)), for:.touchUpInside)
 
+        // onojun: 残しておきたくなる気持ちわかりますが、消しちゃいましょう↓
         // Do any additional setup after loading the view.
     }
     
@@ -144,6 +154,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         self.present(resultVC, animated: true) // 下からニュッと出る。モーダル遷移。
     }
     
+    // onojun: 残しておきたくなる気持ちわかりますが、消しちゃいましょう↓
     /*
     // MARK: - Navigation
 

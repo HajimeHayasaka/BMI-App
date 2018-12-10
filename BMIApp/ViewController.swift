@@ -15,6 +15,9 @@ class ViewController: UIViewController {
         
         // 背景色を変更（白）
         self.view.backgroundColor = UIColor.white
+        // onojun: ちなみにこんな書き方もできます。
+        // self.view.backgroundColor = .white
+        
         
         // ナビゲーションバーを非表示に設定
         self.navigationController!.setNavigationBarHidden(true, animated: false)
@@ -38,6 +41,8 @@ class ViewController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 30)
         button.layer.cornerRadius = 20 // ボタンに丸みを付ける
         button.setTitle("はじめる", for: .normal) // タイトルを設定
+        // onojun: 上のは下の省略形って事を頭の片隅にです
+        // button.setTitle("はじめる", for: UIControl.State.normal)
         self.view.addSubview(button)
         
         // ボタンが押された時の処理を実行
