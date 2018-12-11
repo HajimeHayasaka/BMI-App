@@ -146,12 +146,17 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     
     // BMI計算ボタンを押された時の処理
     @objc func bmiCalcButtonClicked(sender: UIButton){
-        print("bmiCalcButtonClicked")
-        let resultVC: ResultViewController = ResultViewController()
-        if weightInputField.text != "" && heightInputField.text != "" {
-            resultVC.calcBMIResultValue = calcBMI(weight: Double(weightInputField.text!)!, height: Double(heightInputField.text!)!)
+        if let weight = Double(weightInputField.text!), let height = Double(heightInputField.text!) {
+            let calcBMIResultValue = calcBMI(weight: weight, height: height)
+            let resultVC: ResultViewController = ResultViewController(calcBMIResultValue: calcBMIResultValue)
+            self.present(resultVC, animated: true) // 下からニュッと出る。モーダル遷移。
+            print("Numeric")
+        } else {
+            let alert: UIAlertController = UIAlertController(title: "エラー", message: "数字入れてください", preferredStyle:  UIAlertController.Style.alert)
+            let cancelAction: UIAlertAction = UIAlertAction(title: "閉じる", style: UIAlertAction.Style.cancel, handler:nil)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
         }
-        self.present(resultVC, animated: true) // 下からニュッと出る。モーダル遷移。
     }
     
     // onojun: 残しておきたくなる気持ちわかりますが、消しちゃいましょう↓

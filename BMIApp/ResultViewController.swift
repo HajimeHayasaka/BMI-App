@@ -10,15 +10,34 @@ import UIKit
 
 class ResultViewController: UIViewController {
     
+    // BMIの計算結果格納用
+    var calcBMIResultValue: Double!
+    
+    /*
+    private convenience init() {
+        self.init(nibName: nil, bundle: nil)
+    }
+    
+    convenience init(calcBMIResultValue: Double) {
+        self.init(nibName: nil, bundle: nil)
+    }
+    */
+    
+    init(calcBMIResultValue: Double) {
+        self.calcBMIResultValue = calcBMIResultValue
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // BMIの判定結果
     enum BMIResultState: String {
         case Obesity = "太りすぎです！"   // 太っている
         case Normal = "健康です！"       // 正常
         case Slender = "もっと食べて！"   // 痩せている
     }
-    
-    // BMIの計算結果格納用
-    var calcBMIResultValue: Double = 0.0
     
     // BMI結果の画像格納用
     let obesityImage = UIImage(named: "obesityImage")   // 太りすぎな場合の画像
