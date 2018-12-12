@@ -28,7 +28,7 @@ class ResultViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) { // initをオーバーライドするときはrequiredになる。swiftの文法。
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -40,6 +40,7 @@ class ResultViewController: UIViewController {
     }
     
     // BMI結果の画像格納用
+    // ここに記載すると初回に全てロードされてしまう。（メモリを食う）
     let obesityImage = UIImage(named: "obesityImage")   // 太りすぎな場合の画像
     let normalImage = UIImage(named: "normalImage")     // 正常な場合の画像
     let slenderImage = UIImage(named: "slenderImage")   // 痩せている場合の画像
@@ -94,7 +95,6 @@ class ResultViewController: UIViewController {
         // 閉じるボタンが押された時の処理を実行
         closeButton.addTarget(self, action: #selector(closeButtonClicked(sender:)), for:.touchUpInside)
         
-        // Do any additional setup after loading the view.
     }
     
     // 閉じるボタンを押された時の処理
@@ -132,14 +132,4 @@ class ResultViewController: UIViewController {
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

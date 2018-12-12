@@ -143,7 +143,8 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     }
     
     // BMI計算ボタンを押された時の処理
-    @objc func bmiCalcButtonClicked(sender: UIButton){
+    @objc func bmiCalcButtonClicked(sender: UIButton){ // objc = Objective-C の関数。
+//        weightInputField.text?.isEmpty
         if let weight = Double(weightInputField.text!), let height = Double(heightInputField.text!) {
             let calcBMIResultValue = calcBMI(weight: weight, height: height)
             let resultVC: ResultViewController = ResultViewController(calcBMIResultValue: calcBMIResultValue)
