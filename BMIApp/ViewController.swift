@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // 背景色を変更（白）
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = .white
         // onojun: ちなみにこんな書き方もできます。
         // self.view.backgroundColor = .white
         
@@ -27,8 +27,8 @@ class ViewController: UIViewController {
         titleLabel.textColor = UIColor(named: "textGray") // ボタンの色をグレー色（textGray）に設定
         titleLabel.font = UIFont.systemFont(ofSize: 60) // フォントサイズを変更
         titleLabel.frame = CGRect(x: view.frame.width * 0.1, y: view.frame.height * 0.4,
-                                  width: view.frame.width * 0.8, height: view.frame.height * 0.1) // 表示位置を設定
-        titleLabel.textAlignment = NSTextAlignment.center // センター揃え
+                                  width: view.frame.width * 0.8, height: 60) // 表示位置を設定
+        titleLabel.textAlignment = NSTextAlignment.center // センター揃え デフォルトセンターなのでなくてもOK
         titleLabel.text = "BMI計算機" // タイトルを設定
         self.view.addSubview(titleLabel)
         

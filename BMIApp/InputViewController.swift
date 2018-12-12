@@ -31,7 +31,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         // heightInputField.clearButtonMode = UITextField.ViewMode.whileEditing
 
         // 完了ボタンの作成
-        let kbToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
+        let kbToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40))
         kbToolBar.barStyle = UIBarStyle.default  // スタイルを設定
         kbToolBar.sizeToFit()  // 画面幅に合わせてサイズを変更
         // onojun: UIToolbarはあまり使った事ないんですが、画面幅に合わせるならこんなのでも良いかもです。
@@ -140,8 +140,6 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         // BMI計算ボタンが押された時の処理を実行
         bmiCalcButton.addTarget(self, action: #selector(bmiCalcButtonClicked(sender:)), for:.touchUpInside)
 
-        // onojun: 残しておきたくなる気持ちわかりますが、消しちゃいましょう↓
-        // Do any additional setup after loading the view.
     }
     
     // BMI計算ボタンを押された時の処理
@@ -158,17 +156,6 @@ class InputViewController: UIViewController, UITextFieldDelegate {
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
-    // onojun: 残しておきたくなる気持ちわかりますが、消しちゃいましょう↓
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     // 改行ボタンを押された場合の処理
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
