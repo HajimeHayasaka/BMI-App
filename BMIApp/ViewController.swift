@@ -14,25 +14,23 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // 背景色を変更（白）
-        self.view.backgroundColor = .white
-        // onojun: ちなみにこんな書き方もできます。
-        // self.view.backgroundColor = .white
-        
+        self.view.backgroundColor = .white // UIColor.whiteの省略形
         
         // ナビゲーションバーを非表示に設定
         self.navigationController!.setNavigationBarHidden(true, animated: false)
         
-        // タイトルの生成
+        // MARK:タイトルの生成
         let titleLabel = UILabel()
         titleLabel.textColor = UIColor(named: "textGray") // ボタンの色をグレー色（textGray）に設定
         titleLabel.font = UIFont.systemFont(ofSize: 60) // フォントサイズを変更
         titleLabel.frame = CGRect(x: view.frame.width * 0.1, y: view.frame.height * 0.4,
                                   width: view.frame.width * 0.8, height: 60) // 表示位置を設定
         titleLabel.textAlignment = NSTextAlignment.center // センター揃え デフォルトセンターなのでなくてもOK
+        titleLabel.adjustsFontSizeToFitWidth = true // 文字サイズを自動調整（文字切れ防止）
         titleLabel.text = "BMI計算機" // タイトルを設定
         self.view.addSubview(titleLabel)
         
-        // はじめるボタンの生成
+        // MARK:はじめるボタンの生成
         let button = UIButton()
         button.backgroundColor = UIColor(named: "buttonPink")   // ボタンの色をピンク色（buttonPink）に設定
         button.frame = CGRect(x: view.frame.width * 0.25, y: view.frame.height * 0.55,
@@ -47,12 +45,7 @@ class ViewController: UIViewController {
         
         // ボタンが押された時の処理を実行
         button.addTarget(self, action: #selector(basicButtonClicked(sender:)), for:.touchUpInside)
-        
-        // memo
-        // 1：何処の？（ViewController）　２：実行する関数　３：実行タイミング（ボタンを離した時に実行）
-        // #selectorは決まった文で必ず必要
-        //memo:navigationControllerを隠す。
-        
+                
     }
     // ボタンを押された時の処理
     @objc func basicButtonClicked(sender: UIButton){

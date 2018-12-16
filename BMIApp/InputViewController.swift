@@ -24,28 +24,20 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         heightInputField.delegate = self
         
         // クリアボタンの設定
-        weightInputField.clearButtonMode = .whileEditing
-        heightInputField.clearButtonMode = .whileEditing
-        // onojun: 上野も下の省略形ですね！
-        // weightInputField.clearButtonMode = UITextField.ViewMode.whileEditing
-        // heightInputField.clearButtonMode = UITextField.ViewMode.whileEditing
+        weightInputField.clearButtonMode = .whileEditing // UITextField.ViewMode.whileEditingの省略形
+        heightInputField.clearButtonMode = .whileEditing // 同上
 
-        // 完了ボタンの作成
+        // MARK:完了ボタンの作成
         let kbToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40))
         kbToolBar.barStyle = UIBarStyle.default  // スタイルを設定
         kbToolBar.sizeToFit()  // 画面幅に合わせてサイズを変更
-        // onojun: UIToolbarはあまり使った事ないんですが、画面幅に合わせるならこんなのでも良いかもです。
-        // let kbToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40))
 
         let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
         let commitButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(commitButtonTapped(sender:)))
         kbToolBar.items = [spacer, commitButton]
 
         
-        // 体重入力欄の作成 ---------------------------------------------------------------
-        // こんな感じでコメントも書けますよ
-        // MARK: 体重入力欄の作成
-        
+        // MARK:体重入力欄の作成
         // 体重入力タイトル表示
         let weightLabel = UILabel()
         weightLabel.textColor = UIColor(named: "textGray") // ボタンの色をグレー色（textGray）に設定
@@ -75,7 +67,6 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         weightInputField.inputAccessoryView = kbToolBar // 完了ボタンをセット
         self.view.addSubview(weightInputField)
         
-        
         // 下線を表示（体重入力欄）
         let underLineOfweight =  UIView()
         underLineOfweight.backgroundColor = UIColor(named: "textGray") // ボタンの色をグレー色（textGray）に設定
@@ -84,10 +75,8 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(underLineOfweight)
 
         
-        // 身長入力欄の作成 ---------------------------------------------------------------
-        // MARK: 身長入力欄の作成
-
-        // 身長入力タイトル表示
+        // MARK:身長入力欄の作成
+       // 身長入力タイトル表示
         let heightLabel = UILabel()
         heightLabel.textColor = UIColor(named: "textGray") // ボタンの色をグレー色（textGray）に設定
         heightLabel.font = UIFont.systemFont(ofSize: 20) // フォントサイズを変更
@@ -125,8 +114,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(underLineOfheight)
 
         
-        // BMI計算ボタンの生成 ---------------------------------------------------------------
-        
+        // MARK:BMI計算ボタンの生成
         let bmiCalcButton = UIButton()
         bmiCalcButton.backgroundColor = UIColor(named: "buttonPink")   // ボタンの色をピンク色（buttonPink）に設定
         bmiCalcButton.frame = CGRect(x: view.frame.width * 0.25, y: view.frame.height * 0.8,
@@ -144,7 +132,8 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     
     // BMI計算ボタンを押された時の処理
     @objc func bmiCalcButtonClicked(sender: UIButton){ // objc = Objective-C の関数。
-//        weightInputField.text?.isEmpty
+        // MARK:BMI計算ボタンを押された時の処理
+        // memo 空文字で判定する場合はweightInputField.text?.isEmptyが使える。
         if let weight = Double(weightInputField.text!), let height = Double(heightInputField.text!) {
             let calcBMIResultValue = calcBMI(weight: weight, height: height)
             let resultVC: ResultViewController = ResultViewController(calcBMIResultValue: calcBMIResultValue)
@@ -160,6 +149,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     
     // 改行ボタンを押された場合の処理
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // MARK:改行ボタンを押された場合の処理
         if weightInputField.text != "" {
             print("wValue:\(Double(weightInputField.text!)!)")
         }
